@@ -22,9 +22,9 @@ het=$(cat summary.txt | grep "Imputed_Mean_Heterozygosity_Observed" | cut -f 2 -
 awk "{print (log($alpha/($Ns*$ind))/(log(1-$het)))}"
 
 #Estimate ROH for each individual 
-plink --bfile ${FILE} --homozyg --homozyg-window-snp 100 --homozyg-window-threshold 0.02 \
-	--homozyg-gap 250 --homozyg-snp 50 --homozyg-kb 130 --homozyg-density 50 \
-	--homozyg-window-het 3 --homozyg-het 2 --dog --make-bed --out ${FILE}_ROH
+plink --bfile ${FILE} --homozyg --homozyg-window-snp 50 --homozyg-window-threshold 0.05 \
+	--homozyg-gap 500 --homozyg-snp 50 --homozyg-kb 110 --homozyg-density 50 \
+	--homozyg-window-het 1 --homozyg-window-missing 5 --homozyg-het 3 --dog --make-bed --out ${FILE}_het3
 
 #All further calculations and plotting was performed using the RScript ROH Plot
 
